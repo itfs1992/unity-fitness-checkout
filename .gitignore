@@ -26,14 +26,39 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # local env files
+<<<<<<< HEAD
 .env*.local
 .env
 
+=======
+.env
+.env.production
+.env.local
+env.test.bk
+>>>>>>> 553d82a35439295be94683afac93748f10a66171
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
+<<<<<<< HEAD
 
 # storybook
 storybook-static
+=======
+next-env.d.ts
+
+# next-sitemap
+robots.txt
+sitemap.xml
+sitemap-*.xml
+.github
+src/pages/exp
+
+data
+data-sample
+scripts
+?.idea
+package-lock.json
+.vs/
+>>>>>>> 553d82a35439295be94683afac93748f10a66171
