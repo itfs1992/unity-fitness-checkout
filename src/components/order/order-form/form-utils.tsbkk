@@ -1,0 +1,33 @@
+import { CreateOrderInput } from '@/validators/create-order.schema';
+
+export function defaultValues(order?: CreateOrderInput) {
+  return {
+    billingAddress: {
+      customerName: order?.billingAddress?.customerName,
+      phoneNumber: order?.billingAddress?.phoneNumber,
+      email: order?.billingAddress?.email,
+      address: order?.billingAddress?.address,
+    },
+    shippingAddress: {
+      customerName: order?.shippingAddress?.customerName,
+      phoneNumber: order?.shippingAddress?.phoneNumber,
+      address: order?.shippingAddress?.address,
+    },
+    paymentMethod: order?.paymentMethod,
+  };
+}
+
+export const orderData = {
+  billingAddress: {
+    customerName: 'Smith Row',
+    phoneNumber: '',
+    email: '',
+    address: 'Bangladesh',
+  },
+  shippingAddress: {
+    customerName: 'Smith Row',
+    phoneNumber: '',
+    address: '',
+  },
+  paymentMethod: 'bank_transfer',
+};
