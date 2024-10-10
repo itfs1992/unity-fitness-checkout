@@ -37,8 +37,18 @@ const InvoiceDetails: React.FC<InvoiceDetailsProps> = ({ type, title, className 
       {isFormVisible && (
         <div className="mt-4">
           <div className="grid grid-cols-1 sm:grid-cols-1 2xl:grid-cols-4 gap-4 text-gray-950">
-            <FormInput label="Tên hội viên" placeholder="VD: Nguyễn Văn A" type={type} field="name" />
-            <FormInput label="Số điện thoại" placeholder="VD: 0987654321" type={type} field="phone" />
+            <FormInput
+              label="Tên hội viên"
+              placeholder="VD: Nguyễn Văn A"
+              type={type}
+              field="name"
+            />
+            <FormInput
+              label="Số điện thoại"
+              placeholder="VD: 0987654321"
+              type={type}
+              field="phone"
+            />
             <FormInput
               label="Địa chỉ thanh toán"
               placeholder="VD: 123 Đường ABC, Quận XYZ, TP. HCM"

@@ -1,14 +1,13 @@
 'use client';
-
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { useForm, FormProvider } from 'react-hook-form';
-import { toast } from 'react-toastify';
-
 import { CreateOrderInput, orderFormSchema } from '@/validators/create-order.schema';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
+import { useForm, FormProvider } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import { postOrder } from 'src/api/order';
 import { productData } from 'src/data/products-data';
+
 import CustomerInfo from '@/components/checkout/CustomerInfo';
 import InvoiceDetails from '@/components/checkout/InvoiceDetails';
 import PaymentMethod from '@/components/checkout/PaymentMethod';
@@ -28,25 +27,23 @@ const CheckoutPage = ({ id }: CheckoutPageProps) => {
   });
 
   const productItem = productData.find((item) => item.id === id);
-  const [finalPrice, setFinalPrice] = useState<number>(productItem ? productItem.price : 0);
+  const [finalPrice] = useState<number>(productItem ? productItem.price : 0);
   const [idempotencyKey, setIdempotencyKey] = useState<string>('');
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const storedKey = sessionStorage.getItem('idempotencyKey');
     if (storedKey) {
-      console.log('Stored key:', storedKey);
       setIdempotencyKey(storedKey);
     } else {
       const newKey = crypto.randomUUID();
       sessionStorage.setItem('idempotencyKey', newKey);
-      console.log('New key:', newKey);
       setIdempotencyKey(newKey);
     }
   }, []);
-  console.log('Idempotency key:', idempotencyKey);
   if (!productItem) {
     toast.error('Sản phẩm không tồn tại');
+
     return <div>Sản phẩm không tồn tại</div>;
   }
 
@@ -72,6 +69,7 @@ const CheckoutPage = ({ id }: CheckoutPageProps) => {
       } else {
         throw new Error('Failed to process payment URL.');
       }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       toast.error(error?.response?.data?.message || 'Tạo đơn hàng thất bại. Vui lòng thử lại.');
     } finally {

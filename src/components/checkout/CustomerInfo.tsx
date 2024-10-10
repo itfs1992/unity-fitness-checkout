@@ -14,15 +14,6 @@ interface FormValues {
   };
 }
 
-interface FormErrors {
-  [key: string]: {
-    name?: { message: string };
-    email?: { message: string };
-    phone?: { message: string };
-    address?: { message: string };
-  };
-}
-
 const CustomerInfo: React.FC<CustomerInfoProps> = ({ type, title, className = '' }) => {
   const {
     register,

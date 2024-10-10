@@ -10,13 +10,13 @@ interface PaymentSummaryProps {
 }
 
 const PaymentSummary: React.FC<PaymentSummaryProps> = ({ initialPrice }) => {
-  const { register, watch, setValue } = useFormContext();
-  const termsAccepted = watch("termsAccepted", false);
+  const { register, watch } = useFormContext();
+  const termsAccepted = watch('termsAccepted', false);
   const [isTermsModalOpen, setTermsModalOpen] = useState(false);
   const [discountCode, setDiscountCode] = useState('');
   const [discountAmount, setDiscountAmount] = useState<number>(0);
   const [discountApplied, setDiscountApplied] = useState(false);
- 
+
   const handleApplyDiscount = async () => {
     if (discountCode === 'DISCOUNT10') {
       const discount = initialPrice * 0.1;

@@ -1,14 +1,15 @@
 import { messages } from '@/config/messages';
+import { CountryCode, parsePhoneNumberFromString } from 'libphonenumber-js';
 import { z } from 'zod';
 
 import { validateEmail } from './common-rules';
-import { CountryCode, parsePhoneNumberFromString } from 'libphonenumber-js';
 
 const validatePhoneNumber = (phone: string, defaultCountry: CountryCode | undefined = 'VN') => {
   const phoneNumber = parsePhoneNumberFromString(phone, defaultCountry);
   if (!phoneNumber || !phoneNumber.isValid()) {
     return false;
   }
+
   return true;
 };
 
@@ -21,7 +22,7 @@ const addressSchema = z.object({
     })
     .min(2, { message: messages.phoneIsRequired })
     .refine((val) => validatePhoneNumber(val), { message: messages.invalidPhoneNumber }),
-    
+
   address: z.string().min(1, { message: messages.addressIsRequired })
 });
 
